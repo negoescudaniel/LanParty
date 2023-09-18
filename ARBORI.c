@@ -97,24 +97,24 @@ Mode* RightRotation(Mode *z)
 
 
 Mode* insert2(Mode *node,int key,char *s){
-if(node==NULL){
-    node=(Mode*)malloc(sizeof(Mode));
-    node->cheie=key;
-    node->nume=s;
-    node->height=0;
-    node->left=NULL;
-    node->right=NULL;
-    return node;
-}else if(key < node->cheie)
-        node->left=insert2(node->left,key,s);
-else if(key > node->cheie)
-        node->right=insert2(node->right,key,s);
+    if(node==NULL){
+        node=(Mode*)malloc(sizeof(Mode));
+        node->cheie=key;
+        node->nume=s;
+        node->height=0;
+        node->left=NULL;
+        node->right=NULL;
+        return node;
+    }else if(key < node->cheie)
+            node->left=insert2(node->left,key,s);
+    else if(key > node->cheie)
+            node->right=insert2(node->right,key,s);
 
-node->height=1+max(nodeHeight(node->left),nodeHeight(node->right));
-int k=(nodeHeight(node->left)-nodeHeight(node->right));
-if(k>1&& key <node->left->cheie)
-    return RightRotation(node);
-return node;
+    node->height=1+max(nodeHeight(node->left),nodeHeight(node->right));
+    int k=(nodeHeight(node->left)-nodeHeight(node->right));
+    if(k>1&& key <node->left->cheie)
+        return RightRotation(node);
+    return node;
 }
 int max(int a, int b)
 {
